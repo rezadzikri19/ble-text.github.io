@@ -231,11 +231,11 @@ limitations under the License.
       }
 
       function sendNextImageDataBatch(resolve, reject) {
-        // Can only write 128 bytes at a time to the characteristic
-        // Need to send the image data in 128 byte batches
-        if (index + 128 < data.length) {
-          printCharacteristic.writeValue(data.slice(index, index + 128)).then(() => {
-            index += 128;
+        // Can only write 64 bytes at a time to the characteristic
+        // Need to send the image data in 64 byte batches
+        if (index + 64 < data.length) {
+          printCharacteristic.writeValue(data.slice(index, index + 64)).then(() => {
+            index += 64;
             sendNextImageDataBatch(resolve, reject);
           })
             .catch(error => reject(error));
